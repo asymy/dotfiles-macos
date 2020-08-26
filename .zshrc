@@ -125,6 +125,7 @@ python
 pip
 docker
 tmux
+zsh-safe-rm
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -158,12 +159,12 @@ nvimconfig='${=EDITOR} ${HOME}/.config/nvim/init.vim'
 export NVIM=~/.config/nvim/init.vim
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 export PATH=/Users/alisonsymon/bin:$PATH
 
 # Alison Useful variables
 
-export BIB=/Users/alisonsymon/Documents/bib/global.bib
+export BIB=/Users/alisonsymon/Documents/readings/global.bib
 setopt autocd
 # History in cache directory:
 HISTSIZE=10000
@@ -172,6 +173,8 @@ HISTFILE=~/.cache/zsh/history
 
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export PATH="/Users/alisonsymon/Library/Python/3.8/bin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -190,3 +193,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+neofetch

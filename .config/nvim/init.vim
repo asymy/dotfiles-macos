@@ -17,6 +17,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'Konfekt/FastFold'
 Plug 'tmhedberg/SimpylFold'
 Plug 'ap/vim-css-color'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 " === PLUGIN SETTINGS === 
 " Enable deoplete at startup
@@ -32,6 +33,7 @@ let g:airline_theme='deus' "let g:airline_theme='deus'
 let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
+map <leader>w :Neoformat
 " Neomake
 autocmd! BufWritePost * Neomake
 let g:neomake_python_python_maker = neomake#makers#ft#python#python()
@@ -44,6 +46,8 @@ map <leader>t :TaskList<CR>
 let g:SimpylFold_docstring_preview = 1
 " Latex settings
 let g:tex_flavor = 'latex'
+let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 " === VIM SETTINGS ===
 " leader
 let mapleader=","
@@ -92,4 +96,7 @@ map <leader>f :Goyo<CR>
 let g:goyo_width=100
 " Folding
 set nofoldenable
-
+" pandoc presentations
+map <leader>p :!pandoc % -t beamer -o %:r.pdf<CR>
+" pandoc quick convert markdown
+map <leader>r :!readnote % <CR>
