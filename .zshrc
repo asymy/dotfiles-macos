@@ -164,7 +164,7 @@ export PATH=/Users/alisonsymon/bin:$PATH
 
 # Alison Useful variables
 
-export BIB=/Users/alisonsymon/Documents/readings/global.bib
+export BIB=/Users/alisonsymon/nextCloud/tank/readings/global.bib
 setopt autocd
 # History in cache directory:
 HISTSIZE=10000
@@ -194,4 +194,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 
-neofetch

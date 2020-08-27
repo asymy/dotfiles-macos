@@ -1,32 +1,50 @@
 " Use vim-plug as plugin manager
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'davidhalter/jedi-vim'
+" Autocompletion engine
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+" Plug ins for deplete
 Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/context_filetype.vim'
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" Status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Formatting
 Plug 'sbdchd/neoformat'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-commentary'
-Plug 'fisadev/FixedTaskList.vim'
-Plug 'Shougo/context_filetype.vim'
-Plug 'fisadev/vim-isort'
 Plug 'neomake/neomake'
-Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/goyo.vim'
+Plug 'fisadev/vim-isort'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+" Git markers
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+" Folding support
 Plug 'Konfekt/FastFold'
 Plug 'tmhedberg/SimpylFold'
-Plug 'ap/vim-css-color'
+" Vim wiki for notes and markdown highlighting
 Plug 'vimwiki/vimwiki'
+" Goyo for focus mode
+Plug 'junegunn/goyo.vim'
+" Some icon support
+Plug 'ryanoasis/vim-devicons'
+" List of Todos etc
+Plug 'fisadev/FixedTaskList.vim'
 call plug#end()
 " === PLUGIN SETTINGS === 
-" Enable deoplete at startup
+" deoplete
 let g:deoplete#enable_at_startup = 1
-" Tab through autocomplete options
+" let g:deoplete#disable_auto_complete = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" jedi-vim
-let g:jedi#completions_enabled = 0
-let g:jedi#use_splits_not_buffers = 'right'
+call deoplete#custom#option('ignore_sources', {
+   \ '_': ['around', 'buffer', 'tag']
+   \ })
+" Ultisnips
+let g:UltiSnipsExpandTrigger='<c-Space>'
+let g:UltiSnipsJumpForwardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 " set airline theme
 let g:airline_theme='deus' "let g:airline_theme='deus'
 " Neoformat
@@ -48,6 +66,18 @@ let g:SimpylFold_docstring_preview = 1
 let g:tex_flavor = 'latex'
 let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+" Signify
+let g:signify_vcs_list = ['git']
+" mappings to jump to changed blocks
+nmap <leader>sn <plug>(signify-next-hunk)
+nmap <leader>sp <plug>(signify-prev-hunk)
+" nicer colors
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 " === VIM SETTINGS ===
 " leader
 let mapleader=","
