@@ -30,17 +30,17 @@ Plug 'junegunn/goyo.vim'
 " Some icon support
 Plug 'ryanoasis/vim-devicons'
 " List of Todos etc
-Plug 'fisadev/FixedTaskList.vim'
+" Plug 'fisadev/FixedTaskList.vim'
 call plug#end()
-" === PLUGIN SETTINGS === 
+" === PLUGIN SETTINGS ===
 " deoplete
 let g:deoplete#enable_at_startup = 1
 " let g:deoplete#disable_auto_complete = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 call deoplete#custom#option('ignore_sources', {
-   \ '_': ['around', 'buffer', 'tag']
-   \ })
+            \ '_': ['around', 'buffer', 'tag']
+            \ })
 " Ultisnips
 let g:UltiSnipsExpandTrigger='<c-Space>'
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
@@ -51,21 +51,18 @@ let g:airline_theme='deus' "let g:airline_theme='deus'
 let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
-map <leader>w :Neoformat
+" autocmd BufWritePre * Neoformat
 " Neomake
 autocmd! BufWritePost * Neomake
 let g:neomake_python_python_maker = neomake#makers#ft#python#python()
 let g:neomake_python_flake8_maker = neomake#makers#ft#python#flake8()
 let g:neomake_python_python_maker.exe = 'python3 -m py_compile'
 let g:neomake_python_flake8_maker.exe = 'python3 -m flake8'
-" show pending tasks list
-map <leader>t :TaskList<CR>
+let g:neomake_tex_enabled_makers = ['chktex']
 " folding plugin settings
 let g:SimpylFold_docstring_preview = 1
 " Latex settings
 let g:tex_flavor = 'latex'
-let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 " Signify
 let g:signify_vcs_list = ['git']
 " mappings to jump to changed blocks
@@ -78,6 +75,11 @@ highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
 highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
 highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+" Vim-wiki
+let g:vimwiki_list = [{'path': '~/nextCloud/tank/vimwiki/txt',
+            \ 'path_html': '~/nextCloud/tank/vimwiki/html'}]
+let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+au BufRead,BufNewFile *.wiki set filetype=vimwiki
 " === VIM SETTINGS ===
 " leader
 let mapleader=","
@@ -114,7 +116,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 " tab navigation mappings
-map tt :tabnew 
+map tt :tabnew
 map <M-Right> :tabn<CR>
 imap <M-Right> <ESC>:tabn<CR>
 map <M-Left> :tabp<CR>
